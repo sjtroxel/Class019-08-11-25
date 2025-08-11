@@ -23,12 +23,20 @@ export class BookService {
     return this.http.get<Book[]>(`${this.apiUrl}/my_books`)
   }
 
-  createBook(book: Book): Observable<Book> {
-    return this.http.post<Book>(`${this.apiUrl}/books`, { book });
-}
+  createBook(book: Book | FormData): Observable<Book> {
+    if (book instanceof FormData) {
+      return this.http.post<Book>(`${this.apiUrl}/books`, book);
+    } else {
+      return this.http.post<Book>(`${this.apiUrl}/books`, { book });
+    }
+  }
 
-  updateBook(book: Book): Observable<Book> {
-    return this.http.put<Book>(`${this.apiUrl}/books/${book.id}`, { book });
+  updateBook(book: Book | FormData): Observable<Book> {
+    if (book instanceof FormData) {
+      return this.http.put<Book>(`${this.apiUrl}/books/${(book as any).id}`, book);
+    } else {
+      return this.http.put<Book>(`${this.apiUrl}/books/${book.id}`, { book });
+    }
   }
 
   deleteBook(id: number): Observable<void> {

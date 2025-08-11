@@ -1,22 +1,16 @@
 <h3>Add New Book</h3>
 
 <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
-  <label>
-    Title:
-    <input type="text" formControlName="title" />
-  </label>
+  <label>Title:<input type="text" formControlName="title" /></label>
   <br />
 
-  <label>
-    Author:
-    <input type="text" formControlName="author" />
-  </label>
+  <label>Author:<input type="text" formControlName="author" /></label>
   <br />
 
-  <label>
-    <input type="checkbox" formControlName="read" />
-    Read?
-  </label>
+  <label>Cover Image:<input type="file" (change)="onFileSelected($event)" /></label>
+  <br />
+
+  <label><input type="checkbox" formControlName="read" />Read?</label>
   <br />
 
   <button type="submit">Add</button>

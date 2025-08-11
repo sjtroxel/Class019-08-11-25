@@ -5,7 +5,11 @@ class BookBlueprint < Blueprinter::Base
 
   fields :title, :author, :read
 
+  field :cover_image_url do |book|
+    book.cover_image_url
+  end
+
   view :normal do
-    fields :title, :author, :read
+    fields :title, :author, :read, :cover_image_url
   end
 end
